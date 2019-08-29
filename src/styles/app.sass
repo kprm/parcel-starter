@@ -1,0 +1,30 @@
+@import "_helpers/_all"
+
+// +font-face("Montserrat", "Montserrat/Montserrat-Light", 300)
+
+body
+	min-width: 320px
+	position: relative
+	font-family: sans-serif
+	overflow-x: hidden
+
+.container
+	max-width: $container-width +px
+	margin: 0 auto
+	position: relative
+	display: flex
+	transition: opacity .2s easy
+	order: 1
+	+r($container-width)
+		margin: 0 20px
+	h1
+		font-size: 100px
+		color: pink
+
+.main-footer
+	height: 1000p
+	background-image: url(../images/golden-retriever-puppy.jpg)
+	background-repeat: no-repeat
+	background-size: cove
+
+@import "_blocks/_all"

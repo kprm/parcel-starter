@@ -1,0 +1,62 @@
+{
+  "name": "parcel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "spell": "yaspeller dist/*.html",
+    "dev": "parcel src/index.pug -p 3000",
+    "clean": "rimraf ./dist",
+    "lint": "stylelint src/styles/**/*.sass",
+    "build": "rimraf ./dist && parcel build src/index.pug --public-url ./ --no-source-maps"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "css-mqpacker": "^7.0.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.2.1",
+    "postcss-modules": "^1.4.1",
+    "pug": "^2.0.4",
+    "rimraf": "^3.0.0",
+    "sass": "^1.22.10",
+    "stylelint": "^10.1.0",
+    "yaspeller": "^6.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "safari >= 7",
+    "ie >= 9",
+    "ios >= 6"
+  ],
+  "staticPath": "public",
+  "yaspeller": {
+    "ignoreCapitalization": true,
+    "dictionary": [
+      "GPG",
+      "1F710E4D",
+      "WhatsApp",
+      "WeChat",
+      "NSFW",
+      "GitHub",
+      "Autoprefixer",
+      "PostCSS",
+      "Browserslist",
+      "Instagram",
+      "Linguopunk",
+      "ru",
+      "sitnik",
+      "Телеграм",
+      "ВКонтакте",
+      "Твиттер",
+      "Гитхаб",
+      "Автопрефиксер",
+      "Браузерслист",
+      "фронтенд",
+      "Инстаграм",
+      "Лингвопанк"
+    ]
+  }
+}

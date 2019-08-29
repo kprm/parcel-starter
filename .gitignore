@@ -1,0 +1,12 @@
+# IDE
+.idea/
+.vscode/
+
+# Misc
+sandbox
+node_modules
+coverage
+*.xml
+
+dist/
+.cache
