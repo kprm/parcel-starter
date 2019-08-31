@@ -20,7 +20,7 @@ $ npm run build
 
 ## 3. compress your images with tinify
 
-- got to tinify.config.js and add tinify api key, then run script:
+- go to tinify.config.js and add tinify api key, then run script:
 
 ```
 $ npm run tinify
