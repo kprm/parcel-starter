@@ -32,3 +32,10 @@ $ npm run tinify
 ```
 $ npm run purify
 ```
+## 5. yaspeller
+
+- go to config/speller_dict.json and change rules, then run script:
+
+```
+$ npm run spell
+```
