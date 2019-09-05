@@ -18,21 +18,21 @@ http://localhost:3000/
 $ npm run build
 ```
 
-## 3. compress your images with tinify
+## 3. compress your images with [tinypng](https://tinypng.com/)
 
 - go to config/tinify.config.js and add tinify api key, then run script:
 
 ```
 $ npm run tinify
 ```
-## 4. purify css
+## 4. [purify css](https://github.com/purifycss/purifycss)
 
 - go to config/purify.config.js and change cssfile name, then run script:
 
 ```
 $ npm run purify
 ```
-## 5. yaspeller
+## 5. [yaspeller](https://github.com/hcodes/yaspeller)
 
 - go to config/speller_dict.json and change rules, then run script:
 
