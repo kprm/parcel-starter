@@ -30,15 +30,17 @@ function htmlPath() {
       let backgroundImage = 'style="background-image:url(';
       let img = 'img src="';
       let imgClass = '" src="';
+      let spriteUse = 'use xlink:href="';
       let mapObj = {
         [css]: 'link rel="stylesheet" href="css/',
         [js]: 'script src="js/',
         [backgroundImage]: 'style="background-image:url(images/',
         [img]: 'img src="images/',
-        [imgClass]: '" src="images/'
+        [imgClass]: '" src="images/',
+        [spriteUse]: 'use xlink:href="images/'
       };
   
-      let newValue = data.replace(/link rel="stylesheet" href="|script src="|style="background-image:url\(|img src="|" src="/gi, function(matched) {
+      let newValue = data.replace(/link rel="stylesheet" href="|script src="|style="background-image:url\(|img src="|" src="|use xlink:href="/gi, function(matched) {
         return mapObj[matched];
       });
   
