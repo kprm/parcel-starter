@@ -28,16 +28,7 @@ const css = files.filter(ext => ext.endsWith('.css'));
 const js = files.filter(ext => ext.endsWith('.js'));
 const html = files.filter(ext => ext.endsWith('.html'));
 const fonts = files.filter(RegExp.prototype.test, /(woff|woff2)/);
-// const  allImages = files.filter(RegExp.prototype.test, /(webp|png|svg|jpg|jpeg|JPG|gif)/);
-
 const images = files.filter(RegExp.prototype.test, /(^(?!favicon-32x32.\w|apple-icon-180x180.\w).+\.(webp|png|svg|jpg|jpeg|JPG|gif)$)/);
-
-// const fvReg = [
-//   /favicon-32x32.[a-z0-9]/i,
-//   /apple-icon-180x180.[a-z0-9]/i
-// ]
-
-// const images = allImages.filter(img => !fvReg.some( regex => regex.test(img)))
 
 
 function htmlPath() {
