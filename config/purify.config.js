@@ -1,37 +1,38 @@
 const purify = require('purify-css');
-const fs = require('fs-extra');
+const fs = require('fs');
 
-let root = fs.pathExistsSync('./dist/css/') ? './dist/css/' : './dist';
+let root = fs.existsSync('./dist/css/') ? './dist/css/' : './dist/';
 
-let cssArr = getFiles(root);
+let cssArr = [];
+fs.readdirSync(root).filter(file => file.endsWith('css')).map(file => cssArr.push(file))
+console.log(cssArr);
 
-function getFiles(dir, files_) {
-  files_ = files_ || [];
-  let files = fs.readdirSync(dir);
-  for (let i in files) {
-    let name = dir + '/' + files[i];
-    if (~name.indexOf('.css')) {
-      files_.push(name);
-    }
-  }
-  return files_.join();
-}
 
-let whiteListClass = [
-  'is-open',
-  'dropdown',
-  'active',
-  '*owl*',
-  '*mfp*'
-];
+cssArr.forEach(file => {
+  const content = ['./dist/*.js', './dist/js/*.js', './dist/*.html'];
 
-const content = ['./dist/*.js', './dist/js/*.js', './dist/*.html'];
-const css = [cssArr];
-const options = {
-  output: cssArr,
-  whitelist: whiteListClass,
-  info: true,
-  minify: true
-};
+  const css = [root + file];
 
-purify(content, css, options);
+  const whiteListClass = [
+    'is-open',
+    'dropdown',
+    'active',
+    '*owl*',
+    '*mfp*'
+  ];
+
+  const options = {
+    output: root + file,
+    whitelist: whiteListClass,
+    info: true,
+    minify: true
+  };
+  
+  console.log(css);
+  console.log(options.output);
+  
+  purify(content, css, options);
+
+})
+
+
