@@ -28,19 +28,24 @@ fs.readdir(`./${baseDir}`, (err, files) => {
   let filesToMove = [...assetsForHtml, ...maps];
 
 
-  if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, jsDir)) && js.length != 0) {
-    fs.mkdirSync(path.join(__dirname, `../${baseDir}`, jsDir));
-  }
-  if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, cssDir)) && css.length != 0) {
-    fs.mkdirSync(path.join(__dirname, `../${baseDir}`, cssDir));
-  }
-  if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, imagesDir)) && images.length != 0 ) {
-    fs.mkdirSync(path.join(__dirname, `../${baseDir}`, imagesDir));
-  }
-  if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, fontsDir)) && fonts.length != 0 ) {
-    fs.mkdirSync(path.join(__dirname, `../${baseDir}`, fontsDir));
+  const createDir = (dir, arr) => {
+    if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, dir)) && arr.length != 0) {
+      fs.mkdirSync(path.join(__dirname, `../${baseDir}`, dir));
+    }
   }
 
+  const replaceOptions = (file, name, dir, isCSS = false) => {
+    replace.sync({
+      files: path.join(baseDir, file),
+      from: new RegExp(escapeRegExp(name), 'g'),
+      to: isCSS ? '../' + dir + '/' + name : dir + name
+    })
+  }
+
+  createDir(jsDir, js);
+  createDir(cssDir, css);
+  createDir(imagesDir, images);
+  createDir(fontsDir, fonts);
 
   // replace links in html
   html.forEach(
@@ -75,16 +80,7 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = jsDir + '/'
             break
         }
-        let options = {
-          files: path.join(baseDir, file),
-          from: new RegExp(escapeRegExp(name), 'g'),
-          to: dir + name
-        }
-        try {
-          let changedFiles = replace.sync(options);
-        } catch (error) {
-          console.error('Error occurred:', error);
-        }
+        const results = replaceOptions(file, name, dir)
       })
     }
   )
@@ -120,16 +116,7 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = fontsDir
             break
         }
-        let options = {
-          files: path.join(baseDir, file),
-          from: new RegExp(escapeRegExp(name), 'g'),
-          to: '../' + dir + '/' + name
-        }
-        try {
-          let changedFiles = replace.sync(options);
-        } catch (error) {
-          console.error('Error occurred:', error);
-        }
+        const results = replaceOptions(file, name, dir, isCSS = true)
       })
     }
   )
