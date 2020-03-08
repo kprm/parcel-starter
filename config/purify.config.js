@@ -3,16 +3,16 @@ const fs = require('fs');
 
 let root = fs.existsSync('./dist/css/') ? './dist/css/' : './dist/';
 
-let cssArr = [];
-fs.readdirSync(root).filter(file => file.endsWith('css')).map(file => cssArr.push(file))
+let files = fs.readdirSync(root);
+
+let cssArr = files.filter(ext => ext.endsWith('.css')).map(i => i = root + i);
+
 console.log(cssArr);
 
 
 cssArr.forEach(file => {
   const content = ['./dist/*.js', './dist/js/*.js', './dist/*.html'];
-
-  const css = [root + file];
-
+  const css = [file];
   const whiteListClass = [
     'is-open',
     'dropdown',
@@ -20,19 +20,13 @@ cssArr.forEach(file => {
     '*owl*',
     '*mfp*'
   ];
-
   const options = {
-    output: root + file,
+    output: file,
     whitelist: whiteListClass,
     info: true,
     minify: true
   };
-  
-  console.log(css);
-  console.log(options.output);
-  
+
   purify(content, css, options);
 
-})
-
-
+});
