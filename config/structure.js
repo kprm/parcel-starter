@@ -34,14 +34,15 @@ fs.readdir(`./${baseDir}`, (err, files) => {
     }
   }
 
-  const replaceOptions = (file, name, dir, isCSS = false) => {
+  let isRoot = true;
+
+  const replaceOptions = (file, name, dir, isRoot) => {
     replace.sync({
       files: path.join(baseDir, file),
       from: new RegExp(escapeRegExp(name), 'g'),
-      to: isCSS ? '../' + dir + '/' + name : dir + name
+      to: isRoot ? dir + name : '../' + dir + '/' + name
     })
   }
-
   createDir(jsDir, js);
   createDir(cssDir, css);
   createDir(imagesDir, images);
@@ -80,7 +81,7 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = jsDir + '/'
             break
         }
-        const results = replaceOptions(file, name, dir)
+        const results = replaceOptions(file, name, dir, isRoot)
       })
     }
   )
@@ -116,7 +117,7 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = fontsDir
             break
         }
-        const results = replaceOptions(file, name, dir, isCSS = true)
+        const results = replaceOptions(file, name, dir)
       })
     }
   )
