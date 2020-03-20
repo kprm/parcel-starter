@@ -34,15 +34,6 @@ fs.readdir(`./${baseDir}`, (err, files) => {
     }
   }
 
-  let isRoot = true;
-
-  const replaceOptions = (file, name, dir, isRoot) => {
-    replace.sync({
-      files: path.join(baseDir, file),
-      from: new RegExp(escapeRegExp(name), 'g'),
-      to: isRoot ? dir + name : '../' + dir + '/' + name
-    })
-  }
   createDir(jsDir, js);
   createDir(cssDir, css);
   createDir(imagesDir, images);
@@ -81,12 +72,17 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = jsDir + '/'
             break
         }
-        const results = replaceOptions(file, name, dir, isRoot)
+        const results = replace.sync({
+          files: path.join(baseDir, file),
+          from: new RegExp(escapeRegExp(name), 'g'),
+          to: dir + name
+        })
       })
     }
   )
 
   // replace map links in js
+
   // js.forEach(
   //   file => {
   //     maps.forEach(name => {
@@ -117,7 +113,11 @@ fs.readdir(`./${baseDir}`, (err, files) => {
             dir = fontsDir
             break
         }
-        const results = replaceOptions(file, name, dir)
+        const results = replace.sync({
+          files: path.join(baseDir, file),
+          from: new RegExp(escapeRegExp(name), 'g'),
+          to: '../' + dir + '/' + name
+        })
       })
     }
   )
