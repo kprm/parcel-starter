@@ -29,7 +29,7 @@ fs.readdir(`./${baseDir}`, (err, files) => {
 
 
   const createDir = (dir, arr) => {
-    if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, dir)) && arr.length != 0) {
+    if (!fs.existsSync(path.join(__dirname, `../${baseDir}`, dir)) && !arr.length) {
       fs.mkdirSync(path.join(__dirname, `../${baseDir}`, dir));
     }
   }
