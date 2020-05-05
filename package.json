@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.pug -p 3000",
+    "dev": "parcel src/index.html -p 3000",
     "clean": "rimraf ./dist",
     "lint": "stylelint src/styles/**/*.sass",
     "tinify": "node ./config/tinify.config.js",
     "purify": "node ./config/purify.config.js",
     "structure": "node ./config/structure.js",
-    "spell": "yaspeller ./src/pug/*.pug --find-repeat-words --dictionary ./config/speller_dict.json",
-    "build": "rimraf ./dist && parcel build src/*.pug --public-url ./ --no-source-maps"
+    "spell": "yaspeller ./src/*.html --find-repeat-words --dictionary ./config/speller_dict.json",
+    "build": "rimraf ./dist && parcel build src/*.html --public-url ./ --no-source-maps"
   },
   "author": "",
   "license": "ISC",
@@ -26,7 +26,6 @@
     "lodash.escaperegexp": "^4.1.2",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.5.0",
-    "pug": "^2.0.4",
     "purify-css": "^1.2.5",
     "replace-in-file": "^5.0.2",
     "rimraf": "^3.0.1",
